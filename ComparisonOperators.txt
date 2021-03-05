@@ -1,33 +1,87 @@
-vi ComparisonOperators.txt
-vi ComparisonOperators.txt
-cat ComparisonOperators.txt
-vi ComparisonOperators.txt
-history
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+select *
+from salaries;
+-- USING COMPARISON OPERATORS
+-- QUERY emp_no from salaries for those making less than or equal to 78000 from salaries tables
+select emp_no, salary
+from salaries
+where salary <= 78000;
+-- QUERY emp_no and salary for those making more
+-- than or equal to 81000 from salaries tables
+select emp_no, salary
+from salaries
+where salary >= 81000;
+-- BETWEEN: Condition will return the records where the expression is 
+-- within the range of value1 and value2
+-- Query from date, emp_no, salary for those employees who worked
+-- between 1987-01-01 until 1994-01-01
+select to_date, emp_no, salary
+from salaries
+where from_date between '1987-01-01' and '1994-01-01';
+select to_date, emp_no,  from_date
+from salaries
+where from_date >= '1987-01-01' and to_date <= '1994-01-01';
+-- Sample:
+select * from employees
+select * 
+from employees
+where first_name between 'Christian' and 'Ramzi';
+-- IN OPERATOR
+-- Query emp_no, first name from employees for those employees whos emp_no in 10050,10115,10112.
+Select first_name, emp_no
+from employees
+where emp_no in (10050, 10115, 10112);
+-- EXAMPLE: 
+select * from dept_emp;
+-- Fetch all the results for those employes who belong to dept_no d006,d003 from dept_emp table
+select *
+from dept_emp
+where dept_no in('d006','d003');
+-- LIKE OPERATOR: % and _ 
+select * from employees;
+-- Query first_name for all those employees whose name contains ne from employees table
+select first_name 
+from employees 
+where first_name LIKE '%ne%';
+-- Query all the results from employees where name is anel;
+select * 
+from employees
+where first_name LIKE '_anel';
+-- SORTING ASC or DESC
+-- Query all the results for employees table where first name in descending order
+Select *
+from employees
+Order by first_name desc;
+-- Query gender and first name for those employees order by index 2
+select gender, first_name
+from employees
+order by 2;
+-- Avg, max, min, sum functions
+select * from salaries
+order by salary desc;
+select avg(salary) test
+from salaries;
+-- Query max salary alias Highest_Paid from salaries
+select max(salary) Highest_Paid
+from salaries;
+-- Query min salary alias poor_salary from salaries
+select min(salary) poor_salary
+from salaries;
+-- Query total sum of salaries alias Rich from salaries
+select sum(salary) Rich_salary
+from salaries;
+-- COUNT FUNCTIONS
+-- QUERY the count for employees in employees table.
+select count(*)
+from employees;
+-- Query count for non duplicate dept_no department number 
+-- from dep_emp table print emp_no and from_date
+select count(distinct dept_no)
+from dept_emp
+group by emp_no, from_date;
+-- Query count of Gender from employees table
+select * from employees;
+select count(gender)
+from employees;
+-- Query the non duplicate count of gender in employees table. 
+select count(distinct gender)
+from employees;
